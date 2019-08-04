@@ -51,8 +51,9 @@
 		<div id="navb" class="navbar-collapse collapse">
 			
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+			<!-- Just have tp figure out a purpose for the links -->
+				<!-- <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Link</a></li> -->
 			</ul>
 			<div class="search-container">
 				<form class="form-inline" action="/action_page.php">

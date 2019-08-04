@@ -48,12 +48,11 @@
 			
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/feed">My Feed</a></li>
-				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/#">Link</a></li>
-				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/#">Link</a></li>
-				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/#">Study Zone</a></li>
-				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/blog">Blogg</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/message">Messages</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/study">Study Zone</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/blog">Blog</a></li>
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/todo">Calendar</a></li>
-				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/#">Add a Friend</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/addfriend">Add a Friend</a></li>
 
 			</ul>
 			<div class="search-container">

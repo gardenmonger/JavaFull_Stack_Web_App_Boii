@@ -132,15 +132,25 @@ public class IndexController {
 			users.setPassword(pswd);
 			boolean addUsers = userServ.addUser(users);
 //			addUsers = true;
+			mav.addObject("namex",users.getFirstName());
 			mav.setViewName("welcome");
 		}
 		else {
 			System.out.println("Dose not Match ~('3')~");
 			mav.setViewName("index");
 		}
-		
 		return mav;
 	}
-
+	/*--Starting with a drop down list--*/
+	@RequestMapping("/blog")
+	public ModelAndView blogUser333() {
+		return new ModelAndView("blog");
+	}	
+	
+	
+	
+	
+	
+	
 }
 

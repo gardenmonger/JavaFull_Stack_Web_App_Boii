@@ -38,7 +38,7 @@ public class UserServices implements UserServDaoi {
 	
 	
 	
-	
+	/*--This finds the user--*/
 //  @Override
 	public Users findUsers(Users users) {
 		Users foundUsers = null;
@@ -63,7 +63,7 @@ public class UserServices implements UserServDaoi {
 		return foundUsers;
 	}
 	
-	
+	/*--This helps with grabbing the current user name --*/
 //	@Override
 	public Users updateSesh(String sEmail) {
 		
@@ -119,7 +119,7 @@ public class UserServices implements UserServDaoi {
 		}
 		return result;
 	}
-
+	/*--This is backup for the check user login --*/
 	public boolean checkUser2(String password, String email) {// pass in the user object 
 		boolean result = false;
 		EntityManagerFactory entitymanagerfactory = Persistence.createEntityManagerFactory("SpringWebTemplate");
