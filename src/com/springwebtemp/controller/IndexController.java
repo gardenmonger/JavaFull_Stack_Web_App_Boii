@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.springwebtemp.Daoi.UserServDaoi;
 import com.springwebtemp.entities.Admin;
 import com.springwebtemp.entities.Student;
 import com.springwebtemp.entities.Users;
@@ -51,7 +52,7 @@ public class IndexController {
 //		mav.addObject("namex", users.getFirstName());///   here.getFirstName()   this is the one  I have to fix ... i needs it to get the first name from the data base....thru the UserServ class
 		mav.addObject("message", message);
 		System.out.println("Olduser:" + FirstName);
-		System.out.println("user:" + password);
+		System.out.println("userPass:" + password);
 		if (result) 
 		{
 			mav.addObject("namex", users.getFirstName());
@@ -103,7 +104,43 @@ public class IndexController {
 		return new ModelAndView("blog");
 	}
 	
-	
+	/*----This Is the Register Page-----*/
+	@RequestMapping("/justregister")
+	public ModelAndView justRegisteredUser(@SessionAttribute("susers") Users users, 
+			@RequestParam("firstName") String firstName,
+			@RequestParam("lastName") String lastName,
+			@RequestParam("Email") String Email,
+			@RequestParam("pswd") String pswd,
+			@RequestParam("pswd2") String pswd2
+			) {
+	    
+		UserServices userServ = new UserServices();
+		
+		users.setFirstName(firstName);
+	    users.setLastName(lastName);
+	    users.setEmail(Email);
+	    
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("firstName",firstName);
+		mav.addObject("lastName", lastName); 
+		mav.addObject("Email", Email);
+		mav.addObject("pswd", pswd);
+		mav.addObject("pswd2", pswd2);
+		
+		if (pswd.equals(pswd2)) {
+			System.out.println("Its A Match");
+			users.setPassword(pswd);
+			boolean addUsers = userServ.addUser(users);
+//			addUsers = true;
+			mav.setViewName("welcome");
+		}
+		else {
+			System.out.println("Dose not Match ~('3')~");
+			mav.setViewName("index");
+		}
+		
+		return mav;
+	}
 
 }
 

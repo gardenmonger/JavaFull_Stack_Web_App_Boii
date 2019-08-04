@@ -32,7 +32,7 @@
 				</p>
 				<p>Try to submit this form before filling out the input fields,
 					to see the effect.</p>
-				<form action="/action_page.php" class="needs-validation" novalidate>
+				<form action="justregister" class="needs-validation" novalidate>
 					<div class="form-group">
 						<label for="uname">FirstName:<code>*</code></label> <input
 							type="text" class="form-control" id="uname"
@@ -58,6 +58,13 @@
 						<label for="pwd">Password:<code>*</code></label> <input
 							type="password" class="form-control" id="pwd"
 							placeholder="Enter password" name="pswd" required>
+						<div class="valid-feedback">Valid.</div>
+						<div class="invalid-feedback">Please fill out this field.</div>
+					</div>
+					<div class="form-group">
+						<label for="pwd">Confirm Password:<code>*</code></label> <input
+							type="password" class="form-control" id="pwd"
+							placeholder="Enter password" name="pswd2" required>
 						<div class="valid-feedback">Valid.</div>
 						<div class="invalid-feedback">Please fill out this field.</div>
 					</div>

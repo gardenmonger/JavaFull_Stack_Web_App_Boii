@@ -41,8 +41,15 @@
 <body>
 
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+	
+	
+	<a class="navbar-brand" href="#">Logo</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navb">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 		<div id="navb" class="navbar-collapse collapse">
-			<a class="navbar-brand" href="#">Logo</a>
+			
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
