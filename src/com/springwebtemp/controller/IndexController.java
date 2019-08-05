@@ -179,9 +179,10 @@ public class IndexController {
 	public ModelAndView searchUser(@SessionAttribute("susers") Users users, @RequestParam("searchname") String searchword) {
 		
 		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("", searchword);
 		
-		
-		return new ModelAndView("settings");
+		return mav;
 	}	
 	
 	
