@@ -9,9 +9,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+<link rel="stylesheet" href="/resources/css/stylesheet.css" >
 <title>Messages</title>
 </head>
+
+<style>
+#messageoutput {
+    height: 30000px;
+    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+}
+
+#messageinput {
+    flex: 100%;
+    position: fixed;
+}
+</style>
+
 <body>
 
 
@@ -32,6 +45,11 @@
     </header>
 
 
+<div id="messageoutput">
+
+
+
+    </div>
 
 
 </body>
