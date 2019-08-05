@@ -141,13 +141,24 @@ public class IndexController {
 		}
 		return mav;
 	}
-	/*--Starting with a drop down list--*/
-	@RequestMapping("/blog")
-	public ModelAndView blogUser333() {
-		return new ModelAndView("blog");
+	/*---Messages page----*/
+	@RequestMapping("/message")
+	public ModelAndView messageUser(@SessionAttribute("susers") Users users) {
+		return new ModelAndView("messages");
 	}	
-	
-	
+	/*--Starting with a drop down list--*/
+	@RequestMapping("/profile")
+	public ModelAndView profileUser(@SessionAttribute("susers") Users users) {
+		return new ModelAndView("profile");
+	}	
+	@RequestMapping("/settings")
+	public ModelAndView settingsUser(@SessionAttribute("susers") Users users) {
+		return new ModelAndView("settings");
+	}	
+	@RequestMapping("/logout")
+	public ModelAndView logoutUser(@SessionAttribute("susers") Users users) {
+		return new ModelAndView("logout");
+	}		
 	
 	
 	

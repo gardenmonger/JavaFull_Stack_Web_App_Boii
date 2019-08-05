@@ -53,8 +53,15 @@
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/blog">Blog</a></li>
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/todo">Calendar</a></li>
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/addfriend">Add a Friend</a></li>
-
-			</ul>
+				<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Settings</a>
+											      <div class="dropdown-menu">
+											        <a class="dropdown-item" href="${pageContext.request.contextPath}/profile">Profile</a>
+											        <a class="dropdown-item" href="${pageContext.request.contextPath}/settings">Settings</a>
+											        <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Logout</a>
+											      </div>
+											    </li>
+														</ul>
 			<div class="search-container">
 				<form class="form-inline my-2 my-lg-0 d-flex justify-content-end"
 					action="https://www.google.com">
