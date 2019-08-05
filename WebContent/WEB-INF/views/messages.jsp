@@ -4,11 +4,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<title>Messages</title>
 </head>
 <body>
 
+
+
+ <header id="messageinput" class="d-flex flex-column jumbotron text-center fixed-top">
 <jsp:include page="navbar.jsp"></jsp:include>
+        <div class="jumbotron text-center" style="margin-bottom: 0">
+            <h1>
+                Messages
+            </h1>
+        </div>
+
+        <div id="messagebar" class="d-flex">
+            <input type="text" class="p-2  form-control form-control-lg">
+            <button id="sendbutton" type="button" class="btn btn-success">Send</button>
+        </div>
+
+    </header>
 
 
 

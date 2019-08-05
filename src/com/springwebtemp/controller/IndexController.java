@@ -171,9 +171,10 @@ public class IndexController {
 	}	
 	/*--this is the logout part--*/
 	@RequestMapping("/logout")
-	public ModelAndView logoutUser(@SessionAttribute("susers") Users users,HttpSession session) {
-		session.invalidate();
-		return new ModelAndView("logout");
+	public ModelAndView logoutUser(@SessionAttribute("susers") Users users) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("index");
+		return mav;
 	}		
 	@RequestMapping("/index")
 	public ModelAndView searchUser(@SessionAttribute("susers") Users users, @RequestParam("searchname") String searchword) {

@@ -21,7 +21,8 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-<script src="resources/script.js"></script>
+<link rel="stylesheet" href="resources/css/stylesheet.css" >	
+<script src="resources/javascript/script.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 
