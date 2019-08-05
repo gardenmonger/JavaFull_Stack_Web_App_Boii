@@ -3,6 +3,7 @@ package com.springwebtemp.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -141,6 +142,18 @@ public class IndexController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping("/addfriend")
+	public ModelAndView addafriendUser(@SessionAttribute("susers") Users users) {
+		return new ModelAndView("addbyqrcode");
+	}
+	
+	/*--This is the study zone page---*/
+	@RequestMapping("/study")
+	public ModelAndView studyzoneUser(@SessionAttribute("susers") Users users) {
+		return new ModelAndView("studyzone");
+	}
+	
 	/*---Messages page----*/
 	@RequestMapping("/message")
 	public ModelAndView messageUser(@SessionAttribute("susers") Users users) {
@@ -151,14 +164,25 @@ public class IndexController {
 	public ModelAndView profileUser(@SessionAttribute("susers") Users users) {
 		return new ModelAndView("profile");
 	}	
+	/*---this is the log out part----*/
 	@RequestMapping("/settings")
 	public ModelAndView settingsUser(@SessionAttribute("susers") Users users) {
 		return new ModelAndView("settings");
 	}	
+	/*--this is the logout part--*/
 	@RequestMapping("/logout")
-	public ModelAndView logoutUser(@SessionAttribute("susers") Users users) {
+	public ModelAndView logoutUser(@SessionAttribute("susers") Users users,HttpSession session) {
+		session.invalidate();
 		return new ModelAndView("logout");
 	}		
+	@RequestMapping("/index")
+	public ModelAndView searchUser(@SessionAttribute("susers") Users users, @RequestParam("searchname") String searchword) {
+		
+		
+		
+		
+		return new ModelAndView("settings");
+	}	
 	
 	
 	

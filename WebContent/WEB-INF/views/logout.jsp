@@ -8,5 +8,25 @@
 </head>
 <body>
 
+
+
+
+
+
+
+
+<%
+
+
+session.invalidate();
+response.sendRedirect("index");
+
+
+
+%>
+
+
+
+
 </body>
 </html>

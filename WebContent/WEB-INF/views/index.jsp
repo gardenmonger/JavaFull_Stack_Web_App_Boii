@@ -56,9 +56,9 @@
 				<li class="nav-item"><a class="nav-link" href="#">Link</a></li> -->
 			</ul>
 			<div class="search-container">
-				<form class="form-inline" action="/action_page.php">
+				<form class="form-inline" action="search">
 					<input class="form-control mr-sm-2" type="text"
-						placeholder="Search">
+						placeholder="Search" name="searchname">
 					<button class="btn btn-success" type="submit">Search</button>
 				</form>
 			</div>

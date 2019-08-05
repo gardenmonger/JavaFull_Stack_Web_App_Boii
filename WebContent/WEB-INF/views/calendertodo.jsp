@@ -13,6 +13,19 @@
 <br>
 <br>
 <div>	
+<header>
+
+<div class="jumbotron text-center" style="margin-bottom: 0">
+
+
+
+
+</div>
+
+
+</header>
+
+<aside>
 <h1><% out.print("Today is: "+java.util.Calendar.getInstance().getTime()); %>  
 <form action="redirectCal">
   Event: <input type="date" name="todo">
@@ -22,7 +35,7 @@
 </div>
 <div>
 <h1>Event on: ${eventdate}</h1>
-
+</aside>
 
 </div>
 
