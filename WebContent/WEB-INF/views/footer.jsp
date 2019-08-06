@@ -29,8 +29,10 @@
 
 
 
-	<div class="jumbotron text-center" style="margin-bottom: 0">
-		<p>Footer</p>
+	<div class=" text-center fixed-bottom bg-dark">
+		<div class="container">
+		<p>&copy; 2019   Footer</p>
+		</div>
 		</div>
 </body>
 </html>

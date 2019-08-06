@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springwebtemp.Daoi.UserServDaoi;
@@ -94,6 +95,17 @@ public class IndexController {
 		mav.setViewName("calendertodo");
 		return mav;
 	}
+	/*--this grabs the input message--*/
+	@RequestMapping("/send")
+	public ModelAndView messageUser(@SessionAttribute("susers") Users users, @RequestParam("textfield") String message) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("message", message);
+		mav.setViewName("messages");
+		return mav;
+	}
+	
+	
+	
 	/*-------Forgot Password-----------*/
 	@RequestMapping("/forgotpass")
 	public ModelAndView forgotPassUser() {
@@ -157,6 +169,8 @@ public class IndexController {
 	/*---Messages page----*/
 	@RequestMapping("/message")
 	public ModelAndView messageUser(@SessionAttribute("susers") Users users) {
+	 
+	
 		return new ModelAndView("messages");
 	}	
 	/*--Starting with a drop down list--*/
@@ -171,8 +185,10 @@ public class IndexController {
 	}	
 	/*--this is the logout part--*/
 	@RequestMapping("/logout")
-	public ModelAndView logoutUser(@SessionAttribute("susers") Users users) {
+	public ModelAndView logoutUser(SessionStatus status) {
+		status.setComplete();
 		ModelAndView mav = new ModelAndView();
+//		mav.addObject("susers",users);
 		mav.setViewName("index");
 		return mav;
 	}		

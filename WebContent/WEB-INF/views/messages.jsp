@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="/resources/css/stylesheet.css" >
+<link rel="stylesheet" href="resources/css/stylesheet.css" >
 <title>Messages</title>
 </head>
 
@@ -23,6 +23,11 @@
     flex: 100%;
     position: fixed;
 }
+
+
+
+
+
 </style>
 
 <body>
@@ -36,12 +41,12 @@
                 Messages
             </h1>
         </div>
-
+	<form action="send" method="post" modelAttribute="susers">
         <div id="messagebar" class="d-flex">
-            <input type="text" class="p-2  form-control form-control-lg">
-            <button id="sendbutton" type="button" class="btn btn-success">Send</button>
+            <input type="text" class="p-2  form-control form-control-lg" name="textfield">
+            <input type="submit" class="btn btn-success">
         </div>
-
+	</form>
     </header>
 
 
@@ -49,8 +54,57 @@
 
 
 
+
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+
+<div class="container">
+
+<h1>Message: ${message}</h1>
+
+</div>
+
+
+
     </div>
 
+
+<jsp:include page="footer.jsp"></jsp:include>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
 </html>

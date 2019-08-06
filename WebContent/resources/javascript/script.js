@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#loginfade").load(function() {
+    $("#loginfade").onclick(function() {
     	$(this).fadein(2000);
 		
 	});
