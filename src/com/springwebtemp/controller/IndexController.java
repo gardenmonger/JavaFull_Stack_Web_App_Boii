@@ -52,12 +52,12 @@ public class IndexController {
 		String message = result?FirstName:"Not Here!!";
 		ModelAndView mav = new ModelAndView();
 		System.out.println(here);
-		mav.addObject("susers", here);
+		mav.addObject("susers", users);
 //		mav.addObject("namex", users.getFirstName());///   here.getFirstName()   this is the one  I have to fix ... i needs it to get the first name from the data base....thru the UserServ class
 		mav.addObject("message", message);
 		System.out.println("Olduser:" + FirstName);
 		System.out.println("userPass:" + password);
-		if (result && users!=null) 
+		if (result) 
 		{
 			mav.addObject("namex", users.getFirstName());
 			mav.setViewName("welcome");// sets exactly which 'view' to use 
@@ -75,13 +75,24 @@ public class IndexController {
 		mav.addObject("susers",users);
 		return new ModelAndView("registration");
 	}
+	
+	
+	
+	
+	
 	/*--------Calendar------*/
 	@RequestMapping("/todo")
 	public ModelAndView calenderTodo(@SessionAttribute("susers") Users users) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("susers",users);
 		return new ModelAndView("calendertodo");
-	}	
+	}
+	
+	
+	
+	
+	
+	
 	/*-------My Feed--------*/
 	@RequestMapping("/feed")
 	public ModelAndView toMyfeed(@SessionAttribute("susers") Users users ) {
@@ -93,6 +104,11 @@ public class IndexController {
 		mav.setViewName("welcome");
 		return mav;
 	}
+	
+	
+	
+	
+	
 	/*---Goes Back To Calendar---*/
 	@RequestMapping("/redirectCal")
 	public ModelAndView redirectCalender(@SessionAttribute("susers") Users users, @RequestParam("todo") String todo) {
@@ -101,6 +117,12 @@ public class IndexController {
 		mav.setViewName("calendertodo");
 		return mav;
 	}
+	
+	
+	
+	
+	
+	
 	/*--this grabs the input message--*/
 	@RequestMapping("/send")
 	public ModelAndView messageUser(@SessionAttribute("susers") Users users, @RequestParam("textfield") String message) {
@@ -117,6 +139,14 @@ public class IndexController {
 	public ModelAndView forgotPassUser() {
 		return new ModelAndView("forgotpass");
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	/*----Goes to the Blog page----*/
 	@RequestMapping("/blog")
 	public ModelAndView blogUser(@SessionAttribute("susers") Users users) {
@@ -126,6 +156,13 @@ public class IndexController {
 	}
 	
 	/*-----This is to update the current user------*/
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -167,12 +204,26 @@ public class IndexController {
 		return mav;
 	}
 	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/addfriend")
 	public ModelAndView addafriendUser(@SessionAttribute("susers") Users users) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("susers",users);
 		return new ModelAndView("addbyqrcode");
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/*--This is the study zone page---*/
 	@RequestMapping("/study")
@@ -182,6 +233,12 @@ public class IndexController {
 		return new ModelAndView("studyzone");
 		
 	}
+	
+	
+	
+	
+	
+	
 	
 	/*---Messages page----*/
 	@RequestMapping("/message")
@@ -206,6 +263,10 @@ public class IndexController {
 	
 	
 	
+	
+	
+	
+	
 	/*---this is the settings part----*/
 	@RequestMapping("/settings")
 	public ModelAndView settingsUser(@SessionAttribute("susers") Users users) {	
@@ -215,27 +276,20 @@ public class IndexController {
 		return mav;
 	}	
 	
+	
+	
+	
+	
+	
 	/*--the part for the delete user--*/
 	@RequestMapping("/removeUsers")
 	public ModelAndView delUser(@SessionAttribute("susers") Users users) {
-		
-		
 		UserServices userServ = new UserServices();
-		
-
-		
-		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("namex", users.getFirstName());
 		if (users.getFirstName().equals(users.getFirstName())) {
-			
-			
 			boolean del = userServ.delUsers(users);			
-			
-			
-			
 		}
-	
 		return new ModelAndView("index");
 	}	
 	

@@ -32,12 +32,15 @@
 </style>
 
 <body>
-
+<header>
 	<jsp:include page="navbar.jsp"></jsp:include>
+	</header>
 	<br>
 	<br>
 
-	<div class="jumbotron text-center " style="margin-bottom: 0">
+
+<header class="jumbotron align-content-stretch flex-fill">
+	<div class="text-center " style="margin-bottom: 0">
 		<h1>
 			<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32"
 				xmlns="http://www.w3.org/2000/svg"
@@ -50,6 +53,11 @@
 		</h1>
 		<p>${message}</p>
 	</div>
+</header>
+	
+	
+	
+	
 
 	<div id="navdash" class="nav-scroller bg-white shadow-sm position-sticky">
 		<nav class="nav nav-underline ">
