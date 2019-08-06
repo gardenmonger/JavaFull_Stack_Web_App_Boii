@@ -34,7 +34,7 @@ import javax.validation.constraints.Size;
 @Table(name="Messages")
 public class Messages {
 
-//	@ManyToOne(targetEntity = com.springwebtemp.entities.Users)
+//	@ManyToOne
 	
 	
 
@@ -45,10 +45,8 @@ public class Messages {
 	@Column(unique = true)
 	
 	private String message;
-	@Basic
-	@Column
-	@NotNull
-	private int userid;
+	
+	private Users userid;
 	@Basic
 	@Column
 	@NotNull
@@ -77,12 +75,12 @@ public class Messages {
 	}
 
 
-	public int getUserid() {
+	public Users getUserid() {
 		return userid;
 	}
 
 
-	public void setUserid(int userid) {
+	public void setUserid(Users userid) {
 		this.userid = userid;
 	}
 
@@ -98,7 +96,7 @@ public class Messages {
 
 
 	
-	public Messages(int id, String message, int userid, Date date) {
+	public Messages(int id, String message, Users userid, Date date) {
 		super();
 		this.id = id;
 		this.message = message;

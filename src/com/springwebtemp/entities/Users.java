@@ -15,8 +15,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import javax.validation.constraints.*;
-
 @Entity
 @NamedQueries({
 	@NamedQuery(query = "SELECT e FROM Users e WHERE e.Email = :Email",name = "User.email"),
@@ -51,8 +49,8 @@ public class Users {
 	private String password;
 		
 	
-//	@OneToMany(targetEntity ="Messages" )
-//	List<Messages> chat;
+	@OneToMany(mappedBy = "userid")
+	List<Messages> chat;
 	
 	public int getId() {
 		return Id;

@@ -1,3 +1,11 @@
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+
+
+
 <!DOCTYPE html>
 
 <html>
@@ -28,10 +36,23 @@
 
 </head>
 
+
+
+<style>
+
+
+#navbar{
+position: fixed;
+top: 0;
+transition: top 0.3s;
+}
+
+
+</style>
 <body>
 
 
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+    <nav id="navbar" class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
         <a class="navbar-brand" href="#">Logo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navb">
 			<span class="navbar-toggler-icon"></span>
@@ -63,7 +84,18 @@
         </div>
     </nav>
 
-
+<script>
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("navbar").style.top = "0";
+  } else {
+    document.getElementById("navbar").style.top = "-50px";
+  }
+  prevScrollpos = currentScrollPos;
+}
+</script>
 
 
 </body>

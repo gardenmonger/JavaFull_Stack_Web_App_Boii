@@ -10,4 +10,6 @@ public interface UserServDaoi {
 
 	boolean addUser(Users users);
 
+	boolean delUsers(Users users);
+
 }

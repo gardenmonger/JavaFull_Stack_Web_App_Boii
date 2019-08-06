@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.Session;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +44,7 @@ public class IndexController {
 	}
 	/*     -----LOGIN-------    */
 	@RequestMapping("/getUser")
-	public ModelAndView getUser(@SessionAttribute("susers") Users users, @RequestParam("FirstName") String FirstName, @RequestParam("password") String password) {
+	public ModelAndView getUser(@ModelAttribute("susers") Users users, @RequestParam("FirstName") String FirstName, @RequestParam("password") String password) {
 		boolean result = false;
 		UserServices userServ = new UserServices();
 		result = userServ.checkUser(password,FirstName);
@@ -55,7 +57,7 @@ public class IndexController {
 		mav.addObject("message", message);
 		System.out.println("Olduser:" + FirstName);
 		System.out.println("userPass:" + password);
-		if (result) 
+		if (result && users!=null) 
 		{
 			mav.addObject("namex", users.getFirstName());
 			mav.setViewName("welcome");// sets exactly which 'view' to use 
@@ -68,12 +70,16 @@ public class IndexController {
 	}
 	/* -------Register-------- */
 	@RequestMapping("/signup")
-	public ModelAndView registerUser() {
+	public ModelAndView registerUser(@SessionAttribute("susers") Users users) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("susers",users);
 		return new ModelAndView("registration");
 	}
 	/*--------Calendar------*/
 	@RequestMapping("/todo")
 	public ModelAndView calenderTodo(@SessionAttribute("susers") Users users) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("susers",users);
 		return new ModelAndView("calendertodo");
 	}	
 	/*-------My Feed--------*/
@@ -113,9 +119,15 @@ public class IndexController {
 	}
 	/*----Goes to the Blog page----*/
 	@RequestMapping("/blog")
-	public ModelAndView blogUser() {
+	public ModelAndView blogUser(@SessionAttribute("susers") Users users) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("susers",users);
 		return new ModelAndView("blog");
 	}
+	
+	/*-----This is to update the current user------*/
+	
+	
 	
 	/*----This Is the Register Page-----*/
 	@RequestMapping("/justregister")
@@ -157,38 +169,99 @@ public class IndexController {
 	
 	@RequestMapping("/addfriend")
 	public ModelAndView addafriendUser(@SessionAttribute("susers") Users users) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("susers",users);
 		return new ModelAndView("addbyqrcode");
 	}
 	
 	/*--This is the study zone page---*/
 	@RequestMapping("/study")
 	public ModelAndView studyzoneUser(@SessionAttribute("susers") Users users) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("susers",users);
 		return new ModelAndView("studyzone");
+		
 	}
 	
 	/*---Messages page----*/
 	@RequestMapping("/message")
 	public ModelAndView messageUser(@SessionAttribute("susers") Users users) {
-	 
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("susers",users);
 	
 		return new ModelAndView("messages");
 	}	
+	
+	
+	
 	/*--Starting with a drop down list--*/
 	@RequestMapping("/profile")
 	public ModelAndView profileUser(@SessionAttribute("susers") Users users) {
-		return new ModelAndView("profile");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("namex", users.getFirstName());
+		mav.setViewName("profile");
+		return mav;
 	}	
-	/*---this is the log out part----*/
+	
+	
+	
+	
+	/*---this is the settings part----*/
 	@RequestMapping("/settings")
-	public ModelAndView settingsUser(@SessionAttribute("susers") Users users) {
-		return new ModelAndView("settings");
+	public ModelAndView settingsUser(@SessionAttribute("susers") Users users) {	
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("namex", users.getFirstName());
+		mav.setViewName("settings");
+		return mav;
 	}	
+	
+	/*--the part for the delete user--*/
+	@RequestMapping("/removeUsers")
+	public ModelAndView delUser(@SessionAttribute("susers") Users users) {
+		
+		
+		UserServices userServ = new UserServices();
+		
+
+		
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("namex", users.getFirstName());
+		if (users.getFirstName().equals(users.getFirstName())) {
+			
+			
+			boolean del = userServ.delUsers(users);			
+			
+			
+			
+		}
+	
+		return new ModelAndView("index");
+	}	
+	
+	
+	
+	
+	
+	
+	/*--the part for the update user--*/	
+	
+	
+	
 	/*--this is the logout part--*/
 	@RequestMapping("/logout")
-	public ModelAndView logoutUser(SessionStatus status) {
-		status.setComplete();
+	public ModelAndView logoutUser(HttpServletRequest request,SessionStatus status) {
+		
+		HttpSession session = request.getSession(false);
+		
+		
+		if(session != null) {
+			session.invalidate();
+			
+		}
+
 		ModelAndView mav = new ModelAndView();
-//		mav.addObject("susers",users);
+		mav.addObject("susers",null);
 		mav.setViewName("index");
 		return mav;
 	}		
@@ -197,6 +270,7 @@ public class IndexController {
 		
 		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("susers",users);
 		mav.addObject("", searchword);
 		
 		return mav;

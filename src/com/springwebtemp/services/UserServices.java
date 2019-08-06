@@ -175,6 +175,45 @@ public class UserServices implements UserServDaoi {
 		return result;
 		
 	}
+	
+	
+	
+	/*---this is to delete the user----*/
+	
+//	@Override
+	public boolean delUsers(Users users) {
+		boolean result = true;
+		EntityManagerFactory entitymanagerfactory = Persistence.createEntityManagerFactory("SpringWebTemplate");
+		EntityManager entitymanager = entitymanagerfactory.createEntityManager();
+		try {
+			entitymanager.getTransaction().begin();
+			Users delD = entitymanager.find(Users.class,users.getId());
+			entitymanager.remove(delD);
+			entitymanager.getTransaction().commit();
+			//		entitymanager.close();
+			//		entitymanagerfactory.close();
+		}
+		catch(PersistenceException e) {
+			e.getMessage();
+			result = false;
+		}
+		finally {
+			entitymanager.close();
+			entitymanagerfactory.close();
+		}
+		return result;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 	
 	
