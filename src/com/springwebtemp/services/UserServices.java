@@ -91,8 +91,9 @@ public class UserServices implements UserServDaoi {
 	
 	
 	/*------------Check user that Login-------------------*/
-	public boolean checkUser(String password, String email) {
+	public Users checkUser(String password, String email) {
 		boolean result = false;
+		Users match = null;
 		
 		EntityManagerFactory entitymanagerfactory = Persistence.createEntityManagerFactory("SpringWebTemplate");
 		EntityManager entitymanager = entitymanagerfactory.createEntityManager();
@@ -102,7 +103,7 @@ public class UserServices implements UserServDaoi {
 			Query query = entitymanager.createNamedQuery("User.email");// For Different Type of users
 			query.setParameter("Email", email);
 //			query.setParameter("epass", password);
-			Users match = (Users) query.getSingleResult();
+			match = (Users) query.getSingleResult();
 			if (match != null && match.getPassword().equals(password)) 
 			{
 				result = true;
@@ -117,7 +118,7 @@ public class UserServices implements UserServDaoi {
 			e.getStackTrace();
 			System.out.println("This person DOES NOT EXIST!...... BUT IT WORKS ~('-')~ ");
 		}
-		return result;
+		return match;
 	}
 	/*--This is backup for the check user login --*/
 	public boolean checkUser2(String password, String email) {// pass in the user object 
@@ -149,12 +150,16 @@ public class UserServices implements UserServDaoi {
 	/*---This Right Here adds the newly registered User ------*/
 //	@Override
 	public boolean addUser(Users users) {
-
 		boolean result = true;
+		Users addU = null;
 
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("SpringWebTemplate");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
+		
+		
+		if (result&& users!=null) {
+			
 		try
 		{
 			entityManager.getTransaction().begin();
@@ -171,6 +176,12 @@ public class UserServices implements UserServDaoi {
 			entityManager.close();
 			entityManagerFactory.close();
 		}
+		
+		
+		}
+		
+		
+		
 
 		return result;
 		
@@ -195,6 +206,7 @@ public class UserServices implements UserServDaoi {
 		}
 		catch(PersistenceException e) {
 			e.getMessage();
+			System.out.println("Here is where it breakes");
 			result = false;
 		}
 		finally {
@@ -204,6 +216,22 @@ public class UserServices implements UserServDaoi {
 		return result;
 	}
 
+
+	public Users getUser(Users users) {
+		EntityManagerFactory entitymanagerfactory = Persistence.createEntityManagerFactory("SpringWebTemplate");
+		EntityManager entitymanager = entitymanagerfactory.createEntityManager();
+        
+        Users foundStudent = entitymanager.find(Users.class, users.getId());
+        
+//        if (foundStudent !=null) {
+            entitymanager.close();
+//            return foundStudent;
+//        }
+        
+        return foundStudent;
+
+        
+    }
 	
 	
 	
