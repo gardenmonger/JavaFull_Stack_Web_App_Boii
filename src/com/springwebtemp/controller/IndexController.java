@@ -25,7 +25,7 @@ import com.springwebtemp.entities.Users;
 import com.springwebtemp.services.UserServices;
 import com.sun.tools.xjc.reader.xmlschema.bindinfo.BIConversion.User;
 
-@SessionAttributes({ "susers" })
+@SessionAttributes({ "susers","nsuser" })
 @Controller
 public class IndexController {
 	/* -----Session User------ */
@@ -49,6 +49,7 @@ public class IndexController {
 		boolean result = false;
 		UserServices userServ = new UserServices();
 		Users returnUser = userServ.checkUser(password, FirstName);
+		Admin returnAdmin = userServ.checkAdmin(password, FirstName);
 
 		Users here = userServ.updateSesh(FirstName);
 		String message = result ? FirstName : "Not Here!!";
@@ -71,7 +72,7 @@ public class IndexController {
 		return mav;
 	}
 
-	/* -------Register-------- */
+	/* ------- The Sign up button at Register-------- */
 	@RequestMapping("/signup")
 	public ModelAndView registerUser() {
 		return new ModelAndView("registration");
@@ -106,7 +107,12 @@ public class IndexController {
 		mav.setViewName("calendertodo");
 		return mav;
 	}
-
+	
+	
+	
+	
+	
+//######### FINISH THIS PART ######################
 	/*--this grabs the input message--*/
 	@RequestMapping("/send")
 	public ModelAndView messageUser(@SessionAttribute("susers") Users users,
@@ -117,6 +123,10 @@ public class IndexController {
 		return mav;
 	}
 
+//################################################	
+	
+	
+	
 	/*-------Forgot Password-----------*/
 	@RequestMapping("/forgotpass")
 	public ModelAndView forgotPassUser() {
@@ -133,6 +143,15 @@ public class IndexController {
 
 	/*-----This is to update the current user------*/
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/*----This Is the Register Page-----*/
 	@RequestMapping("/justregister")
 	public ModelAndView justRegisteredUser(
@@ -172,7 +191,7 @@ public class IndexController {
 			mav.setViewName("index");
 		}
 		
-		//the ID need a default value in oder for it to work
+		//the ID need a default value in oder for it to work----- THIS WAS A ROAD BLOCK------ BUT I Got It to work
 
 //		boolean addUsers = userServ.addUser(users) != null ;
 		return mav;
@@ -189,11 +208,15 @@ public class IndexController {
 	@RequestMapping("/study")
 	public ModelAndView studyzoneUser() {
 		ModelAndView mav = new ModelAndView();
-
-		return new ModelAndView("studyzone");
+		mav.setViewName("studyzone");
+		return mav;
 
 	}
 
+	
+	
+	
+	
 	/*---Messages page----*/
 	@RequestMapping("/message")
 	public ModelAndView messageUser(@SessionAttribute("susers") Users users) {
@@ -203,15 +226,30 @@ public class IndexController {
 		return mav;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
 	/*--Starting with a drop down list--*/
 	@RequestMapping("/profile")
 	public ModelAndView profileUser(@SessionAttribute("susers") Users users) {
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("susers", users);
 		mav.addObject("namex", users.getFirstName());
 		mav.setViewName("profile");
 		return mav;
 	}
 
+	
+	
+	
+	
+	
+	
 	/*---this is the settings part----*/
 	@RequestMapping("/settings")
 	public ModelAndView settingsUser(@SessionAttribute("susers") Users users) {
@@ -221,11 +259,17 @@ public class IndexController {
 		return mav;
 	}
 
+	
+	
+	
+	
+	
+	
+	
 	/*--the part for the delete user--*/
 	@RequestMapping("/removeUsers")
 	public ModelAndView delUser(@SessionAttribute("susers") Users users) {
 		UserServices userServ = new UserServices();
-
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("namex", users.getFirstName());
 		mav.setViewName("index");
@@ -239,19 +283,34 @@ public class IndexController {
 		return mav;
 	}
 
+	
+	
+	
+	
+	
 	/*--the part for the update user--*/
-
+	@RequestMapping("/updateUsers")
+	public ModelAndView updateUser() {
+		//#############################################
+		//use the user services here to update the user  
+		//#############################################
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("index");
+		return mav;
+		
+	}
+	
+	
+	
+	
+	
 	/*--this is the logout part--*/
 	@RequestMapping("/logout")
 	public ModelAndView logoutUser(HttpServletRequest request, SessionStatus status) {
-
 		HttpSession session = request.getSession(false);
-
 		if (session != null) {
 			session.invalidate();
-
 		}
-
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("susers", null);
 		mav.setViewName("index");

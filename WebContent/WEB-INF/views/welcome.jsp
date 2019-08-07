@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -15,7 +15,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+	rel="stylesheet"> -->
 <title>My Feed</title>
 </head>
 <style>
@@ -59,8 +59,8 @@
 	
 	
 
-	<div id="navdash" class="nav-scroller bg-white shadow-sm position-sticky">
-		<nav class="nav nav-underline ">
+	<div id="navdash" class="nav-scroller bg-white shadow-sm ">
+		<nav class="nav nav-underline position-sticky">
 			<a class="nav-link active " href="# ">Dashboard</a> <a
 				class="nav-link " href="# ">Notification</a> <a class="nav-link "
 				href="# ">Friends</a> <a class="nav-link " href="# ">Trending</a> <a

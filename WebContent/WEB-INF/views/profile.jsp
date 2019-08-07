@@ -46,7 +46,7 @@
                             Update your account
                         </p>
 
-                        <form action="justregister" class="needs-validation" novalidate>
+                        <form action="updateprofile" class="needs-validation" novalidate>
                             <div class="form-group">
                                 <label for="uname">FirstName:</label> <input type="text" class="form-control" id="uname" placeholder="Enter FirstName" name="firstName" required>
                                 <div class="valid-feedback">Valid.</div>

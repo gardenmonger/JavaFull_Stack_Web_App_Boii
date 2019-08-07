@@ -11,6 +11,7 @@ import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import com.springwebtemp.Daoi.UserServDaoi;
+import com.springwebtemp.entities.Admin;
 import com.springwebtemp.entities.Users;
 
 public class UserServices implements UserServDaoi {
@@ -120,17 +121,20 @@ public class UserServices implements UserServDaoi {
 		}
 		return match;
 	}
-	/*--This is backup for the check user login --*/
-	public boolean checkUser2(String password, String email) {// pass in the user object 
+	/*--This is backup for the check Admin login --*/
+	public Admin checkAdmin(String password, String email) {// pass in the user object 
 		boolean result = false;
+		Admin matchAdmin = null;
+		
 		EntityManagerFactory entitymanagerfactory = Persistence.createEntityManagerFactory("SpringWebTemplate");
 		EntityManager entitymanager = entitymanagerfactory.createEntityManager();
 		
 		try 
 		{
-			Query query = entitymanager.createNamedQuery("Users.Vali");// For Different Type of users
-			Users match = (Users) query.getSingleResult();
-			if (match != null && match.getPassword().equals(password) && match.getEmail().equals(email)) 
+			Query query = entitymanager.createNamedQuery("Admin.Vali");// For Different Type of users
+			query.setParameter("Email", email);
+		    matchAdmin = (Admin) query.getSingleResult();
+			if (matchAdmin != null && matchAdmin.getPassword().equals(password)) 
 			{
 				result = true;
 			}
@@ -144,7 +148,7 @@ public class UserServices implements UserServDaoi {
 			e.getStackTrace();
 			System.out.println("This person DOES NOT EXIST!...... BUT IT WORKS ~('-')~ ");
 		}
-		return result;
+		return matchAdmin;
 	}
 
 	/*---This Right Here adds the newly registered User ------*/
