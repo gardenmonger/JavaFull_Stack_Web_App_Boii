@@ -60,12 +60,18 @@ public class IndexController {
 		mav.addObject("message", message);
 		System.out.println("Olduser:" + FirstName);
 		System.out.println("userPass:" + password);
-		if (returnUser != null) // if the returned user is not null -- Gary's solution
+		if (returnUser.getPassword().equals(password)) // if the returned user is not null 
 		{
 			mav.addObject("susers", returnUser);
 			mav.addObject("namex", returnUser.getFirstName());
 			mav.setViewName("welcome");// sets exactly which 'view' to use
-		} else {
+		}else if (returnAdmin.getPassword().equals(password)) {
+			mav.addObject("nsuser", returnAdmin);
+			mav.addObject("namex", returnAdmin.getFirstName());
+			mav.setViewName("adminuser");// sets exactly which 'view' to use
+			
+		}
+		else {
 			mav.setViewName("index");
 		}
 

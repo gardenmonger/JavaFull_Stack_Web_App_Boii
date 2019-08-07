@@ -18,18 +18,11 @@ public class UserServices implements UserServDaoi {
 
 
 /*      create a bunch of methods HERE!! then compare with in the controller logic       */
-//	public String getAUser(Users sEmail) {
-//		EntityManagerFactory entitymanagerfactory = Persistence.createEntityManagerFactory("SpringWebTemplate");
-//		EntityManager entitymanager = entitymanagerfactory.createEntityManager();
-//        
-//		Users foundStudent = entitymanager.find(Users.class, sEmail.getId());
-//        
-//            entitymanager.close();
-//        
-//        return foundStudent.getFirstName();
-//
-//        
-//    }
+
+
+
+
+
 	
 	
 	
@@ -146,7 +139,7 @@ public class UserServices implements UserServDaoi {
 		catch (Exception e) 
 		{
 			e.getStackTrace();
-			System.out.println("This person DOES NOT EXIST!...... BUT IT WORKS ~('-')~ ");
+			System.out.println("This admin DOES NOT EXIST!...... BUT IT WORKS ~('-')~ ");
 		}
 		return matchAdmin;
 	}

@@ -22,10 +22,9 @@ import javax.persistence.Table;
 public class Admin {
 	
 	
-		@Basic
-		@Column
+	    @Id
 		private int Id;
-		@Id
+		@Basic
 		@Column
 		private String Email;
 		@Basic
@@ -91,7 +90,7 @@ public class Admin {
 		@Override
 		public String toString() {
 			return "User [Id=" + Id + ", Email=" + Email + ", FirstName=" + firstName + ", LastName=" + lastName
-					+ ", passowrd=" + password + ", HomeCity=" +  "]";
+					+ ", passowrd=" + password +  "]";
 		}
 		
 		

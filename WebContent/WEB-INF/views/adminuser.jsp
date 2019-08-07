@@ -8,5 +8,16 @@
 </head>
 <body>
 
+
+
+<h1>
+
+This is the admin page ${namex}
+
+
+</h1>
+
+
+
 </body>
 </html>
