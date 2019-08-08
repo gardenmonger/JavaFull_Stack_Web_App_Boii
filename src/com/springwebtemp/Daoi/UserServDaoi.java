@@ -1,5 +1,6 @@
 package com.springwebtemp.Daoi;
 
+import com.springwebtemp.entities.Messages;
 import com.springwebtemp.entities.Users;
 
 public interface UserServDaoi {
@@ -11,5 +12,9 @@ public interface UserServDaoi {
 	boolean addUser(Users users);
 
 	boolean delUsers(Users users);
+
+	boolean addMessage(String string);
+
+	boolean addMessage(Messages messages);
 
 }

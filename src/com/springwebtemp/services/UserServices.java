@@ -12,6 +12,7 @@ import javax.persistence.Query;
 
 import com.springwebtemp.Daoi.UserServDaoi;
 import com.springwebtemp.entities.Admin;
+import com.springwebtemp.entities.Messages;
 import com.springwebtemp.entities.Users;
 
 public class UserServices implements UserServDaoi {
@@ -114,8 +115,8 @@ public class UserServices implements UserServDaoi {
 		}
 		return match;
 	}
-	/*--This is backup for the check Admin login --*/
-	public Admin checkAdmin(String password, String email) {// pass in the user object 
+	/*--This is for the check Admin login --*/
+	public Admin checkAdmin(String password, String email) {// pass in the user params 
 		boolean result = false;
 		Admin matchAdmin = null;
 		
@@ -234,7 +235,72 @@ public class UserServices implements UserServDaoi {
 	
 	
 	
+
 	
+	
+//	@Override
+public boolean addMessage(Messages messages) {                                                                            
+	boolean result = true;                                                                                       
+	                                                                                           		
+	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("SpringWebTemplate");     	
+	EntityManager entityManager = entityManagerFactory.createEntityManager();                                    	
+                                                                                                                 	
+	                                                                                                             	
+	                                                                                                             	
+	if (result&& messages!=null) {                                                                                  	
+		                                                                                                         	
+	try                                                                                                          	
+	{                                                                                                            	
+		entityManager.getTransaction().begin();                                                                  	
+		entityManager.persist(messages);                                                                            	
+		entityManager.getTransaction().commit();                                                                 	
+	}                                                                                                            	
+	catch(PersistenceException e)                                                                                	
+	{                                                                                                            	
+		e.getMessage();                                                                                          	
+		result = false;                                                                                          	
+	}                                                                                                            	
+	finally                                                                                                      	
+	{                                                                                                            	
+		entityManager.close();                                                                                   	
+		entityManagerFactory.close();                                                                            	
+	}                                                                                                            	
+	                                                                                                             	
+	                                                                                                             	
+	}                                                                                                            	
+	                                                                                                             	
+	                                                                                                             	
+	                                                                                                             	
+                                                                                                                 	
+	return result;                                                                                               	
+	                                                                                                             	
+}
+
+public Messages updateMessage(String string) {
+
+	Messages newMessage = new Messages();
+	newMessage.setMessage(string);
+	newMessage.getDate();	
+	
+	
+	
+	
+	
+	return newMessage;
+}
+
+public boolean addMessage(String string) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+
+                                                                                                                	
 	
 	
 	

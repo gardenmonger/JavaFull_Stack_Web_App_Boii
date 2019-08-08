@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.springwebtemp.Daoi.UserServDaoi;
 import com.springwebtemp.entities.Admin;
+import com.springwebtemp.entities.Messages;
 import com.springwebtemp.entities.Student;
 import com.springwebtemp.entities.Users;
 import com.springwebtemp.services.UserServices;
@@ -123,6 +124,13 @@ public class IndexController {
 	@RequestMapping("/send")
 	public ModelAndView messageUser(@SessionAttribute("susers") Users users,
 			@RequestParam("textfield") String message) {
+		UserServices userServ = new  UserServices();
+		Messages newMessage = new Messages();
+		newMessage = userServ.updateMessage(message);
+		userServ.addMessage(newMessage);
+
+		
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("message", message);
 		mav.setViewName("messages");
@@ -310,6 +318,12 @@ public class IndexController {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	/*--this is the logout part--*/
 	@RequestMapping("/logout")
 	public ModelAndView logoutUser(HttpServletRequest request, SessionStatus status) {
@@ -322,6 +336,10 @@ public class IndexController {
 		mav.setViewName("index");
 		return mav;
 	}
+	
+	
+	
+	
 	
 	
 	

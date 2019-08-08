@@ -6,6 +6,7 @@ package com.springwebtemp.entities;
 
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -39,11 +40,10 @@ public class Messages {
 	
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Basic
 	@Column(unique = true)
-	
 	private String message;
 	
 	private Users userid;
@@ -52,8 +52,8 @@ public class Messages {
 	@NotNull
 	private Date date;
 	
-	
-	
+	@ManyToOne(targetEntity = Users.class)
+	List<Users> listofUsers;
 	
 	public int getId() {
 		return id;
