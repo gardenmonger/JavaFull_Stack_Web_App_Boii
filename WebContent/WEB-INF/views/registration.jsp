@@ -48,7 +48,7 @@
 						<div class="invalid-feedback">Please fill out this field.</div>
 					</div>
 					<div class="form-group">
-						<label for="uname">Email:<code>*</code></label> <input type="text"
+						<label for="uname">Email:<code>*</code></label> <input type="email"
 							class="form-control" id="uname" placeholder="Enter Email"
 							name="Email" required>
 						<div class="valid-feedback">Valid.</div>

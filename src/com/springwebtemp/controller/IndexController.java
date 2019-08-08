@@ -1,5 +1,6 @@
 package com.springwebtemp.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,6 +127,9 @@ public class IndexController {
 			@RequestParam("textfield") String message) {
 		UserServices userServ = new  UserServices();
 		Messages newMessage = new Messages();
+		java.util.Date jDate = new java.util.Date();
+		java.sql.Date  sqlDate = new java.sql.Date(jDate.getTime());
+		newMessage.setDate(sqlDate);
 		newMessage = userServ.updateMessage(message);
 		userServ.addMessage(newMessage);
 

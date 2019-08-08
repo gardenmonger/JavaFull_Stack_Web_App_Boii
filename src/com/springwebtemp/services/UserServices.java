@@ -278,8 +278,11 @@ public boolean addMessage(Messages messages) {
 
 public Messages updateMessage(String string) {
 
+	java.util.Date jDate = new java.util.Date();
+	java.sql.Date  sqlDate = new java.sql.Date(jDate.getTime());
 	Messages newMessage = new Messages();
 	newMessage.setMessage(string);
+	newMessage.setDate(sqlDate);
 	newMessage.getDate();	
 	
 	

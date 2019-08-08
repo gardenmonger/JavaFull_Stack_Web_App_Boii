@@ -115,7 +115,7 @@
 				<form:form action="getUser" class="needs-validation" method="post"
 					modelAttribute="susers">
 					<div class="form-group">
-						<label for="uname">Email:</label> <input type="text"
+						<label for="uname">Email:</label> <input type="email"
 							class="form-control" id="uname" placeholder="Enter Email"
 							name="FirstName" required>
 						<div class="valid-feedback">Valid.</div>

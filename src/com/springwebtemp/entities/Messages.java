@@ -52,6 +52,7 @@ public class Messages {
 	@NotNull
 	private Date date;
 	
+	
 	@ManyToOne(targetEntity = Users.class)
 	List<Users> listofUsers;
 	
