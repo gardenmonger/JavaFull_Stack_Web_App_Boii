@@ -7,6 +7,7 @@
 	<class>com.springwebtemp.entities.Student</class>
 	<class>com.springwebtemp.entities.Admin</class>
 	<class>com.springwebtemp.entities.Messages</class>
+	<class>com.springwebtemp.entities.FollowingWho</class>
 	
 		<properties>
 		<property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/NewSBA"/>

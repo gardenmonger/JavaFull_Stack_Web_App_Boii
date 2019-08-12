@@ -5,6 +5,7 @@
 
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 <title>Messages</title>
 </head>
@@ -25,7 +26,7 @@
 
 	<jsp:include page="navbar.jsp"></jsp:include>
 
-
+<div class="row">
 	<div class="col-md-8">
 		<header id="messageinput"
 			class="d-flex flex-column  text-center fixed-bottom">
@@ -48,7 +49,7 @@
 		<h1>things</h1>
 
 	</div>
-
+</div>
 
 
 

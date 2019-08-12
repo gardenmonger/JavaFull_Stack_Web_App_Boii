@@ -1,5 +1,6 @@
 package com.springwebtemp.services;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -279,11 +280,13 @@ public boolean addMessage(Messages messages) {
 public Messages updateMessage(String string) {
 
 	java.util.Date jDate = new java.util.Date();
-	java.sql.Date  sqlDate = new java.sql.Date(jDate.getTime());
+	Timestamp  sqlDate = new java.sql.Timestamp(System.currentTimeMillis());
 	Messages newMessage = new Messages();
 	newMessage.setMessage(string);
 	newMessage.setDate(sqlDate);
-	newMessage.getDate();	
+//	newMessage.getDate();
+	System.out.println(jDate);
+	System.out.println(sqlDate);
 	
 	
 	
@@ -295,6 +298,49 @@ public Messages updateMessage(String string) {
 public boolean addMessage(String string) {
 	// TODO Auto-generated method stub
 	return false;
+}
+
+public boolean updateUser(Users users) {
+	boolean result = true;
+	Users addU = null;
+
+	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("SpringWebTemplate");
+	EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+	
+	
+	if (result&& users!=null) {
+		
+	try
+	{
+		entityManager.getTransaction().begin();
+		Users foundUser = entityManager.find(Users.class, users.getId());
+		foundUser.setFirstName(users.getFirstName());
+		foundUser.setLastName(users.getLastName());
+		foundUser.setEmail(users.getEmail());
+		foundUser.setPassword(users.getPassword());
+		entityManager.getTransaction().commit();
+	}
+	catch(PersistenceException e)
+	{
+		e.getMessage();
+		result = false;
+	}
+	finally
+	{
+		entityManager.close();
+		entityManagerFactory.close();
+	}
+	
+	
+	}
+	
+	
+	
+
+	return result;
+	
+	
 }
 
 

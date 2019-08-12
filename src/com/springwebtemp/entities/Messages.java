@@ -2,10 +2,8 @@ package com.springwebtemp.entities;
 
 
 
-
-
-
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -43,14 +41,14 @@ public class Messages {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Basic
-	@Column(unique = true)
+	@Column(unique = false)
 	private String message;
 	
 	private Users userid;
 	@Basic
 	@Column
 	@NotNull
-	private Date date;
+	private Timestamp date;
 	
 	
 	@ManyToOne(targetEntity = Users.class)
@@ -86,18 +84,18 @@ public class Messages {
 	}
 
 
-	public Date getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
 
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate(Timestamp sqlDate) {
+		this.date = sqlDate;
 	}
 
 
 	
-	public Messages(int id, String message, Users userid, Date date) {
+	public Messages(int id, String message, Users userid, Timestamp date) {
 		super();
 		this.id = id;
 		this.message = message;

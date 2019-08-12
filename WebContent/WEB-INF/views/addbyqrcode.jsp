@@ -239,8 +239,14 @@
     
     
     
-    <div class="col-4 position-fixed">//
-    
+    <div class="col-4">
+    		<div class="media text-muted pt-3 position-fixed border-bottom border-gray shadow-sm">
+			  <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search Users" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+		</div>
     
     
     

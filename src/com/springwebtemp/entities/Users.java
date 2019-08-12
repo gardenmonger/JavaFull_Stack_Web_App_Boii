@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -47,9 +48,10 @@ public class Users {
 	@NotNull
 	@Size
 	private String password;
-		
+	@ManyToMany(targetEntity = FollowingWho.class)
+	List<FollowingWho> follow;
 	
-	@OneToMany(mappedBy = "userid")
+	@OneToMany(targetEntity = Messages.class ,mappedBy = "userid")
 	List<Messages> chat;
 	
 	public int getId() {

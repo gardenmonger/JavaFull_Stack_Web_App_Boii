@@ -1,6 +1,7 @@
 package com.springwebtemp.controller;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,11 +56,9 @@ public class IndexController {
 		Admin returnAdmin = userServ.checkAdmin(password, FirstName);
 
 		Users here = userServ.updateSesh(FirstName);
-		String message = result ? FirstName : "Not Here!!";
+		String message = result ? "Not Here!!" :FirstName;
 		ModelAndView mav = new ModelAndView();
 		System.out.println(here);
-//		mav.addObject("susers", users);
-//		mav.addObject("namex", users.getFirstName());///   here.getFirstName()   this is the one  I have to fix ... i needs it to get the first name from the data base....thru the UserServ class
 		mav.addObject("message", message);
 		System.out.println("Olduser:" + FirstName);
 		System.out.println("userPass:" + password);
@@ -128,7 +128,7 @@ public class IndexController {
 		UserServices userServ = new  UserServices();
 		Messages newMessage = new Messages();
 		java.util.Date jDate = new java.util.Date();
-		java.sql.Date  sqlDate = new java.sql.Date(jDate.getTime());
+		java.sql.Timestamp  sqlDate = new java.sql.Timestamp(jDate.getTime());
 		newMessage.setDate(sqlDate);
 		newMessage = userServ.updateMessage(message);
 		userServ.addMessage(newMessage);
@@ -197,8 +197,6 @@ public class IndexController {
 		if (pswd.equals(pswd2)) {
 			System.out.println("Its A Match");
 			users.setPassword(pswd);
-
-
 			mav.addObject("susers", users);	
 			
 			mav.addObject("namex", users.getFirstName());
@@ -216,15 +214,16 @@ public class IndexController {
 	}
 
 	@RequestMapping("/addfriend")
-	public ModelAndView addafriendUser() {
+	public ModelAndView addafriendUser(@RequestAttribute("susers") Users users) {
 		ModelAndView mav = new ModelAndView();
-		
-		return new ModelAndView("addbyqrcode");
+		mav.addObject("susers", users);
+		mav.setViewName("addbyqrcode");
+		return mav;
 	}
 
 	/*--This is the study zone page---*/
 	@RequestMapping("/study")
-	public ModelAndView studyzoneUser() {
+	public ModelAndView studyzoneUser(@RequestAttribute("susers") Users users) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("studyzone");
 		return mav;
@@ -258,7 +257,7 @@ public class IndexController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("susers", users);
 		mav.addObject("namex", users.getFirstName());
-		mav.setViewName("profile");
+		mav.setViewName("index");
 		return mav;
 	}
 
@@ -308,17 +307,46 @@ public class IndexController {
 	
 	/*--the part for the update user--*/
 	@RequestMapping("/updateUsers")
-	public ModelAndView updateUser() {
+	public ModelAndView updateUserPage(@SessionAttribute("susers") Users users)
+			 {
 		//#############################################
 		//use the user services here to update the user  
 		//#############################################
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index");
+		mav.addObject("namex", users.getFirstName());
+		mav.setViewName("profile");	
 		return mav;
 		
 	}
 	
-	
+	@RequestMapping("/updateprofile")
+	public ModelAndView updateUser(Users users,
+			@RequestParam("firstName") String firstName, 
+			@RequestParam("lastName") String lastName,
+			@RequestParam("Email") String Email, 
+			@RequestParam("pswd") String pswd,
+			@RequestParam("pswd2") String pswd2) {
+		
+		UserServices userServ = new UserServices();
+		ModelAndView mav = new ModelAndView();
+
+		if (true) {
+		mav.addObject("firstName", firstName);
+		mav.addObject("lastName", lastName);
+		mav.addObject("Email", Email);
+		mav.addObject("pswd", pswd);
+		mav.addObject("pswd2", pswd2);
+		mav.addObject("susers", users);
+		
+			userServ.updateUser(users);
+			mav.setViewName("welcome");
+		}
+		
+		
+		mav.setViewName("welcome");
+		
+		return mav;
+	}
 	
 	
 	
@@ -356,5 +384,14 @@ public class IndexController {
 
 		return mav;
 	}
+	
+	
+	
+	/*---- Follow and Unfollow ----*/
+	
+	
+	
+	
+	
 
 }

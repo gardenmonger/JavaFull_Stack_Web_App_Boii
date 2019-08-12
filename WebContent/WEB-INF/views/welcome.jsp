@@ -59,7 +59,7 @@
 	
 	
 
-	<div id="navdash" class="nav-scroller bg-white shadow-sm ">
+	<div id="navdash" class="nav-scroller bg-white shadow-sm clearfix ">
 		<nav class="nav nav-underline position-sticky">
 			<a class="nav-link active " href="# ">Dashboard</a> 
 			<a class="nav-link " href="# ">Notification</a> 
@@ -69,7 +69,7 @@
 			<a class="nav-link " href="# ">Gossip</a> 
 			<a class="nav-link " href="# ">Collage</a>
 
-    <form class="form-inline my-2 my-lg-0">
+    <form class="form-inline my-2 my-lg-0 float-right">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
