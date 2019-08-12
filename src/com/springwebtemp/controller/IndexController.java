@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -306,41 +307,38 @@ public class IndexController {
 	
 	
 	/*--the part for the update user--*/
+	//#############################################
+	//use the user services here to update the user  
+	//#############################################
 	@RequestMapping("/updateUsers")
 	public ModelAndView updateUserPage(@SessionAttribute("susers") Users users)
 			 {
-		//#############################################
-		//use the user services here to update the user  
-		//#############################################
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("namex", users.getFirstName());
 		mav.setViewName("profile");	
 		return mav;
 		
 	}
-	
+	/*----Find a way to grab the User ID this part needs to be completed----*/
 	@RequestMapping("/updateprofile")
-	public ModelAndView updateUser(Users users,
+	public ModelAndView updateUser(@PathVariable("urlId") int id,
 			@RequestParam("firstName") String firstName, 
 			@RequestParam("lastName") String lastName,
 			@RequestParam("Email") String Email, 
 			@RequestParam("pswd") String pswd,
 			@RequestParam("pswd2") String pswd2) {
-		
-		UserServices userServ = new UserServices();
-		ModelAndView mav = new ModelAndView();
 
-		if (true) {
+		UserServices userServ = new UserServices();
+		Users users = userServ.findUsersbyInt(id);
+		ModelAndView mav = new ModelAndView();
 		mav.addObject("firstName", firstName);
 		mav.addObject("lastName", lastName);
 		mav.addObject("Email", Email);
 		mav.addObject("pswd", pswd);
 		mav.addObject("pswd2", pswd2);
-		mav.addObject("susers", users);
-		
-			userServ.updateUser(users);
-			mav.setViewName("welcome");
-		}
+		mav.addObject("susers", users);		
+		userServ.updateUser(users);
 		
 		
 		mav.setViewName("welcome");

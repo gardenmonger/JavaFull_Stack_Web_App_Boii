@@ -24,7 +24,28 @@ public class UserServices implements UserServDaoi {
 
 
 
+	public Users findUsersbyInt(int id) {
+		Users foundUsers = null;
+		
+		EntityManagerFactory entitymanagerfactory = Persistence.createEntityManagerFactory("SpringWebTemplate");
+		EntityManager entitymanager = entitymanagerfactory.createEntityManager();
 
+		try
+		{
+			foundUsers = entitymanager.find(Users.class, id);
+		}
+		catch(PersistenceException e)
+		{
+			e.getMessage();
+		}
+		finally
+		{
+			entitymanager.close();
+			entitymanagerfactory.close();
+		}
+
+		return foundUsers;
+	}
 	
 	
 	
@@ -302,14 +323,14 @@ public boolean addMessage(String string) {
 
 public boolean updateUser(Users users) {
 	boolean result = true;
-	Users addU = null;
+	
 
 	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("SpringWebTemplate");
 	EntityManager entityManager = entityManagerFactory.createEntityManager();
 
 	
 	
-	if (result&& users!=null) {
+	
 		
 	try
 	{
@@ -324,6 +345,7 @@ public boolean updateUser(Users users) {
 	catch(PersistenceException e)
 	{
 		e.getMessage();
+		System.out.println("not Updating");
 		result = false;
 	}
 	finally
@@ -333,7 +355,7 @@ public boolean updateUser(Users users) {
 	}
 	
 	
-	}
+	
 	
 	
 	

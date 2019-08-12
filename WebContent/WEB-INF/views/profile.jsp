@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
     <!DOCTYPE html>
     <html>
 
@@ -46,7 +47,7 @@
                             Update your account
                         </p>
 
-                        <form action="updateprofile" class="needs-validation" novalidate>
+                        <form:form action="updateprofile" class="needs-validation" >
                             <div class="form-group">
                                 <label for="uname">FirstName:</label> <input type="text" class="form-control" id="uname" placeholder="Enter FirstName" name="firstName" required>
                                 <div class="valid-feedback">Valid.</div>
@@ -80,7 +81,7 @@
 						
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
-                        </form>
+                        </form:form>
                         <br>
                     </div>
                 </article>
