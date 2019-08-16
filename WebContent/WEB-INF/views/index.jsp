@@ -5,6 +5,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -189,8 +190,8 @@
 	</script>
 	<script type="text/javascript">
 	
-	$(document).ready(function() {
-	    $("#loginfade").onclick(function() {
+	
+	    $("#loginfade").click(function() {
 	    	$(this).fadein(20);
 			
 		});

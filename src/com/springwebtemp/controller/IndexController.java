@@ -134,7 +134,8 @@ public class IndexController {
 		newMessage = userServ.updateMessage(message);
 		userServ.addMessage(newMessage);
 
-		
+		Messages setMessageIdtoUser = new Messages();
+		setMessageIdtoUser.setUserid(users.getId());
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("message", message);
@@ -215,10 +216,24 @@ public class IndexController {
 	}
 
 	@RequestMapping("/addfriend")
-	public ModelAndView addafriendUser(@RequestAttribute("susers") Users users) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("susers", users);
-		mav.setViewName("addbyqrcode");
+	public ModelAndView addafriendUser(
+//			@RequestAttribute("susers") Users users
+			) {
+		UserServices userServices = new UserServices();
+		List<Users> usersList = userServices.getAllUsers();
+		
+		
+//		ModelAndView mav = new ModelAndView();
+		
+		
+		
+//		mav.addObject("susers", users);
+		
+		
+		
+		ModelAndView mav = new ModelAndView("addbyqrcode");
+		mav.addObject("usersList", usersList);
+//		mav.setViewName("addbyqrcode");
 		return mav;
 	}
 
@@ -321,8 +336,9 @@ public class IndexController {
 		
 	}
 	/*----Find a way to grab the User ID this part needs to be completed----*/
-	@RequestMapping("/updateprofile")
-	public ModelAndView updateUser(@PathVariable("urlId") int id,
+	@RequestMapping("/updateprofile/{urlId}")
+	public ModelAndView updateUser(@SessionAttribute("susers") Users users,
+			@PathVariable("urlId") int id,
 			@RequestParam("firstName") String firstName, 
 			@RequestParam("lastName") String lastName,
 			@RequestParam("Email") String Email, 
@@ -330,7 +346,7 @@ public class IndexController {
 			@RequestParam("pswd2") String pswd2) {
 
 		UserServices userServ = new UserServices();
-		Users users = userServ.findUsersbyInt(id);
+	    userServ.findUsersbyInt(id);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("firstName", firstName);
 		mav.addObject("lastName", lastName);
@@ -341,7 +357,7 @@ public class IndexController {
 		userServ.updateUser(users);
 		
 		
-		mav.setViewName("welcome");
+		mav.setViewName("index");
 		
 		return mav;
 	}
@@ -382,6 +398,13 @@ public class IndexController {
 
 		return mav;
 	}
+	
+	
+	
+	
+	/*---Showing all of the Users-----*/
+
+	
 	
 	
 	

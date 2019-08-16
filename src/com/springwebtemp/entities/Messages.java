@@ -43,8 +43,9 @@ public class Messages {
 	@Basic
 	@Column(unique = false)
 	private String message;
-	
-	private Users userid;
+	@Basic
+	@Column
+	private int userid;
 	@Basic
 	@Column
 	@NotNull
@@ -74,13 +75,13 @@ public class Messages {
 	}
 
 
-	public Users getUserid() {
+	public int getUserid() {
 		return userid;
 	}
 
 
-	public void setUserid(Users userid) {
-		this.userid = userid;
+	public void setUserid(int i) {
+		this.userid = i;
 	}
 
 
@@ -95,7 +96,7 @@ public class Messages {
 
 
 	
-	public Messages(int id, String message, Users userid, Timestamp date) {
+	public Messages(int id, String message, int userid, Timestamp date) {
 		super();
 		this.id = id;
 		this.message = message;

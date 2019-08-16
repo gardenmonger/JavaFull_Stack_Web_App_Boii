@@ -51,7 +51,7 @@ public class Users {
 	@ManyToMany(targetEntity = FollowingWho.class)
 	List<FollowingWho> follow;
 	
-	@OneToMany(targetEntity = Messages.class ,mappedBy = "userid")
+	@OneToMany(targetEntity = Messages.class)
 	List<Messages> chat;
 	
 	public int getId() {

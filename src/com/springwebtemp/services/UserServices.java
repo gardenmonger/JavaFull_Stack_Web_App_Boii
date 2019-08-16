@@ -290,13 +290,25 @@ public boolean addMessage(Messages messages) {
 	                                                                                                             	
 	                                                                                                             	
 	}                                                                                                            	
-	                                                                                                             	
-	                                                                                                             	
-	                                                                                                             	
-                                                                                                                 	
 	return result;                                                                                               	
 	                                                                                                             	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 public Messages updateMessage(String string) {
 
@@ -308,11 +320,6 @@ public Messages updateMessage(String string) {
 //	newMessage.getDate();
 	System.out.println(jDate);
 	System.out.println(sqlDate);
-	
-	
-	
-	
-	
 	return newMessage;
 }
 
@@ -323,15 +330,8 @@ public boolean addMessage(String string) {
 
 public boolean updateUser(Users users) {
 	boolean result = true;
-	
-
 	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("SpringWebTemplate");
 	EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-	
-	
-	
-		
 	try
 	{
 		entityManager.getTransaction().begin();
@@ -353,15 +353,44 @@ public boolean updateUser(Users users) {
 		entityManager.close();
 		entityManagerFactory.close();
 	}
-	
-	
-	
-	
-	
-	
-
 	return result;
+}
+
+
+
+
+
+
+
+
+
+public List<Users> getAllUsers() {
+	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("SpringWebTemplate");
+	EntityManager entityManager = entityManagerFactory.createEntityManager();
 	
+	
+	Query query = entityManager.createNamedQuery("Users.all");
+	List<Users> usersList = query.getResultList();
+	entityManager.close();
+	entityManagerFactory.close();		
+	
+	return usersList;
+	
+}
+
+
+public List<Users> searchAnyUsers(String searchUsers) {
+	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("SpringWebTemplate");
+	EntityManager entityManager = entityManagerFactory.createEntityManager();
+	
+	
+	Query query = entityManager.createNamedQuery("Users.all");
+	query.setParameter("someString", searchUsers);
+	List<Users> usersList = query.getResultList();
+	entityManager.close();
+	entityManagerFactory.close();		
+	
+	return usersList;
 	
 }
 
@@ -371,10 +400,6 @@ public boolean updateUser(Users users) {
 
 
 
-                                                                                                                	
-	
-	
-	
 	
 }
 	
