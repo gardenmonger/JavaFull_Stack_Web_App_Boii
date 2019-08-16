@@ -126,6 +126,7 @@ public class IndexController {
 	@RequestMapping("/send")
 	public ModelAndView messageUser(@SessionAttribute("susers") Users users,
 			@RequestParam("textfield") String message) {
+		int getIdOdj = users.getId();
 		UserServices userServ = new  UserServices();
 		Messages newMessage = new Messages();
 		java.util.Date jDate = new java.util.Date();
@@ -135,11 +136,11 @@ public class IndexController {
 		userServ.addMessage(newMessage);
 
 		Messages setMessageIdtoUser = new Messages();
-		setMessageIdtoUser.setUserid(users.getId());
+		setMessageIdtoUser.setUserid(getIdOdj);
 		
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("messages");
 		mav.addObject("message", message);
-		mav.setViewName("messages");
+
 		return mav;
 	}
 
@@ -169,7 +170,7 @@ public class IndexController {
 	
 	
 	
-	
+		
 	
 	
 	/*----This Is the Register Page-----*/
@@ -216,24 +217,14 @@ public class IndexController {
 	}
 
 	@RequestMapping("/addfriend")
-	public ModelAndView addafriendUser(
-//			@RequestAttribute("susers") Users users
-			) {
+	public ModelAndView addafriendUser(@RequestAttribute("susers") Users users) {
 		UserServices userServices = new UserServices();
 		List<Users> usersList = userServices.getAllUsers();
 		
 		
-//		ModelAndView mav = new ModelAndView();
-		
-		
-		
-//		mav.addObject("susers", users);
-		
-		
-		
 		ModelAndView mav = new ModelAndView("addbyqrcode");
 		mav.addObject("usersList", usersList);
-//		mav.setViewName("addbyqrcode");
+
 		return mav;
 	}
 
@@ -325,28 +316,28 @@ public class IndexController {
 	//#############################################
 	//use the user services here to update the user  
 	//#############################################
-	@RequestMapping("/updateUsers")
-	public ModelAndView updateUserPage(@SessionAttribute("susers") Users users)
-			 {
+	@RequestMapping("/updateUsers/{users.id}")
+	public ModelAndView updateUserPage(@SessionAttribute("susers") Users users,
+			@PathVariable("users.id") int id)
+	{	
+		UserServices userServ = new UserServices();
+	    users = userServ.findUsersbyInt(id);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("namex", users.getFirstName());
 		mav.setViewName("profile");	
-		return mav;
-		
+		return mav;	
 	}
 	/*----Find a way to grab the User ID this part needs to be completed----*/
-	@RequestMapping("/updateprofile/{urlId}")
-	public ModelAndView updateUser(@SessionAttribute("susers") Users users,
-			@PathVariable("urlId") int id,
+	@RequestMapping("/updateprofile")
+	public ModelAndView updateUser(@SessionAttribute("susers") Users users,	
 			@RequestParam("firstName") String firstName, 
 			@RequestParam("lastName") String lastName,
 			@RequestParam("Email") String Email, 
 			@RequestParam("pswd") String pswd,
-			@RequestParam("pswd2") String pswd2) {
-
+			@RequestParam("pswd2") String pswd2) 
+	{
 		UserServices userServ = new UserServices();
-	    userServ.findUsersbyInt(id);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("firstName", firstName);
 		mav.addObject("lastName", lastName);
@@ -354,11 +345,8 @@ public class IndexController {
 		mav.addObject("pswd", pswd);
 		mav.addObject("pswd2", pswd2);
 		mav.addObject("susers", users);		
-		userServ.updateUser(users);
-		
-		
-		mav.setViewName("index");
-		
+		userServ.updateUser(users);	
+		mav.setViewName("index");		
 		return mav;
 	}
 	
@@ -381,7 +369,7 @@ public class IndexController {
 		mav.addObject("susers", null);
 		mav.setViewName("index");
 		return mav;
-	}
+	    }
 	
 	
 	

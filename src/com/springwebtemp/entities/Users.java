@@ -51,8 +51,8 @@ public class Users {
 	@ManyToMany(targetEntity = FollowingWho.class)
 	List<FollowingWho> follow;
 	
-	@OneToMany(targetEntity = Messages.class)
-	List<Messages> chat;
+//	@OneToMany(targetEntity = Messages.class)
+//	List<Messages> chat;
 	
 	public int getId() {
 		return Id;

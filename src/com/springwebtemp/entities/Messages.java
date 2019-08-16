@@ -44,7 +44,7 @@ public class Messages {
 	@Column(unique = false)
 	private String message;
 	@Basic
-	@Column
+	@Column(unique = false)
 	private int userid;
 	@Basic
 	@Column
