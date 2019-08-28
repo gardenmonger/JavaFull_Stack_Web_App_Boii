@@ -132,11 +132,11 @@ public class IndexController {
 		java.util.Date jDate = new java.util.Date();
 		java.sql.Timestamp  sqlDate = new java.sql.Timestamp(jDate.getTime());
 		newMessage.setDate(sqlDate);
-		newMessage = userServ.updateMessage(message);
+		newMessage = userServ.updateMessage(message, getIdOdj);
 		userServ.addMessage(newMessage);
-
+		System.out.println(getIdOdj);
 		Messages setMessageIdtoUser = new Messages();
-		setMessageIdtoUser.setUserid(getIdOdj);
+		
 		
 		ModelAndView mav = new ModelAndView("messages");
 		mav.addObject("message", message);
@@ -215,15 +215,18 @@ public class IndexController {
 //		boolean addUsers = userServ.addUser(users) != null ;
 		return mav;
 	}
-
+// this part grabs the list of users from the servers
 	@RequestMapping("/addfriend")
-	public ModelAndView addafriendUser(@RequestAttribute("susers") Users users) {
+	public ModelAndView addafriendUser(
+//			@RequestAttribute("susers") Users users
+			) {
 		UserServices userServices = new UserServices();
 		List<Users> usersList = userServices.getAllUsers();
 		
 		
-		ModelAndView mav = new ModelAndView("addbyqrcode");
+		ModelAndView mav = new ModelAndView();
 		mav.addObject("usersList", usersList);
+		mav.setViewName("addbyqrcode");
 
 		return mav;
 	}
@@ -316,12 +319,13 @@ public class IndexController {
 	//#############################################
 	//use the user services here to update the user  
 	//#############################################
-	@RequestMapping("/updateUsers/{users.id}")
-	public ModelAndView updateUserPage(@SessionAttribute("susers") Users users,
-			@PathVariable("users.id") int id)
+	@RequestMapping("/updateUsers")
+	public ModelAndView updateUserPage(@SessionAttribute("susers") Users users
+//			,@PathVariable("users.id") int id
+			)
 	{	
 		UserServices userServ = new UserServices();
-	    users = userServ.findUsersbyInt(id);
+//	    users = userServ.findUsersbyInt(id);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("namex", users.getFirstName());

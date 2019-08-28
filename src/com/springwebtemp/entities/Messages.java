@@ -41,7 +41,7 @@ public class Messages {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Basic
-	@Column(unique = false)
+	@Column(unique = false)// the unique attribute allows the column to either be unique or not
 	private String message;
 	@Basic
 	@Column(unique = false)

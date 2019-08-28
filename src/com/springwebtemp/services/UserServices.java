@@ -310,13 +310,14 @@ public boolean addMessage(Messages messages) {
 
 
 
-public Messages updateMessage(String string) {
+public Messages updateMessage(String string, int i) {
 
 	java.util.Date jDate = new java.util.Date();
 	Timestamp  sqlDate = new java.sql.Timestamp(System.currentTimeMillis());
 	Messages newMessage = new Messages();
 	newMessage.setMessage(string);
 	newMessage.setDate(sqlDate);
+	newMessage.setUserid(i);
 //	newMessage.getDate();
 	System.out.println(jDate);
 	System.out.println(sqlDate);
@@ -391,6 +392,22 @@ public List<Users> searchAnyUsers(String searchUsers) {
 	entityManagerFactory.close();		
 	
 	return usersList;
+	
+}
+
+
+
+
+
+
+
+
+
+public Messages addId(int i) {
+	Messages addInt = new Messages();
+	addInt.setUserid(i);
+	return addInt;
+	// TODO Auto-generated method stub
 	
 }
 
