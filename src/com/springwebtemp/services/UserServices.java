@@ -1,8 +1,6 @@
 package com.springwebtemp.services;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -133,7 +131,8 @@ public class UserServices implements UserServDaoi {
 		catch (Exception e) 
 		{
 			e.getStackTrace();
-			System.out.println("This person DOES NOT EXIST!...... BUT IT WORKS ~('-')~ ");
+			System.out.println("This is to check the user in the database ");
+			result = false;
 		}
 		return match;
 	}
@@ -162,7 +161,8 @@ public class UserServices implements UserServDaoi {
 		catch (Exception e) 
 		{
 			e.getStackTrace();
-			System.out.println("This admin DOES NOT EXIST!...... BUT IT WORKS ~('-')~ ");
+			System.out.println("This is the checkadmin userserv Part");
+			result = false;
 		}
 		return matchAdmin;
 	}
@@ -263,14 +263,9 @@ public class UserServices implements UserServDaoi {
 //	@Override
 public boolean addMessage(Messages messages) {                                                                            
 	boolean result = true;                                                                                       
-	                                                                                           		
 	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("SpringWebTemplate");     	
 	EntityManager entityManager = entityManagerFactory.createEntityManager();                                    	
-                                                                                                                 	
-	                                                                                                             	
-	                                                                                                             	
 	if (result&& messages!=null) {                                                                                  	
-		                                                                                                         	
 	try                                                                                                          	
 	{                                                                                                            	
 		entityManager.getTransaction().begin();                                                                  	
@@ -287,47 +282,26 @@ public boolean addMessage(Messages messages) {
 		entityManager.close();                                                                                   	
 		entityManagerFactory.close();                                                                            	
 	}                                                                                                            	
-	                                                                                                             	
-	                                                                                                             	
 	}                                                                                                            	
 	return result;                                                                                               	
-	                                                                                                             	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 public Messages updateMessage(String string, int i) {
-
 	java.util.Date jDate = new java.util.Date();
 	Timestamp  sqlDate = new java.sql.Timestamp(System.currentTimeMillis());
 	Messages newMessage = new Messages();
 	newMessage.setMessage(string);
 	newMessage.setDate(sqlDate);
 	newMessage.setUserid(i);
-//	newMessage.getDate();
+//#### just to see correct data in the system ###	
 	System.out.println(jDate);
 	System.out.println(sqlDate);
+//###############################################	
 	return newMessage;
 }
 
-public boolean addMessage(String string) {
-	// TODO Auto-generated method stub
-	return false;
-}
+
+// updating the user to the database must persist to the database
 
 public boolean updateUser(Users users) {
 	boolean result = true;
@@ -379,7 +353,7 @@ public List<Users> getAllUsers() {
 	
 }
 
-
+//##### fix this to query data for the database #######
 public List<Users> searchAnyUsers(String searchUsers) {
 	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("SpringWebTemplate");
 	EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -403,12 +377,17 @@ public List<Users> searchAnyUsers(String searchUsers) {
 
 
 
-public Messages addId(int i) {
-	Messages addInt = new Messages();
-	addInt.setUserid(i);
-	return addInt;
+
+
+
+
+
+
+
+
+public boolean addMessage(String string) {
 	// TODO Auto-generated method stub
-	
+	return false;
 }
 
 

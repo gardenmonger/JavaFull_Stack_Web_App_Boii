@@ -2,7 +2,6 @@ package com.springwebtemp.entities;
 
 
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -21,7 +20,6 @@ import com.springwebtemp.entities.Users;
 
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({

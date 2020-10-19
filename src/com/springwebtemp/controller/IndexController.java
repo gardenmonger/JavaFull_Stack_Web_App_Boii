@@ -1,34 +1,23 @@
 package com.springwebtemp.controller;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springwebtemp.Daoi.UserServDaoi;
 import com.springwebtemp.entities.Admin;
 import com.springwebtemp.entities.Messages;
-import com.springwebtemp.entities.Student;
 import com.springwebtemp.entities.Users;
 import com.springwebtemp.services.UserServices;
-import com.sun.tools.xjc.reader.xmlschema.bindinfo.BIConversion.User;
 
 @SessionAttributes({ "susers","nsuser" })
 @Controller
@@ -67,14 +56,17 @@ public class IndexController {
 		{
 			mav.addObject("susers", returnUser);
 			mav.addObject("namex", returnUser.getFirstName());
+			
 			mav.setViewName("welcome");// sets exactly which 'view' to use
 		}else if (returnAdmin.getPassword().equals(password)) {
 			mav.addObject("nsuser", returnAdmin);
 			mav.addObject("namex", returnAdmin.getFirstName());
+			
 			mav.setViewName("adminuser");// sets exactly which 'view' to use
 			
 		}
 		else {
+			
 			mav.setViewName("index");
 		}
 
@@ -99,8 +91,6 @@ public class IndexController {
 	@RequestMapping("/feed")
 	public ModelAndView toMyfeed(@SessionAttribute("susers") Users users) {
 
-		// UserServices userServ = new UserServices();
-		// Users here = userServ.updateSesh(susers.getFirstName());
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("namex", users.getFirstName());/// this is the one I have to fix ... i needs it to get the first
 														/// name from the data base....thru the UserServ class
@@ -135,7 +125,7 @@ public class IndexController {
 		newMessage = userServ.updateMessage(message, getIdOdj);
 		userServ.addMessage(newMessage);
 		System.out.println(getIdOdj);
-		Messages setMessageIdtoUser = new Messages();
+		
 		
 		
 		ModelAndView mav = new ModelAndView("messages");
@@ -149,12 +139,16 @@ public class IndexController {
 	
 	
 	/*-------Forgot Password-----------*/
+	
+	// currently not done needs to be fixed up 
 	@RequestMapping("/forgotpass")
 	public ModelAndView forgotPassUser() {
 		return new ModelAndView("forgotpass");
 	}
 
 	/*----Goes to the Blog page----*/
+	
+	// needs to be fixed up 
 	@RequestMapping("/blog")
 	public ModelAndView blogUser(@SessionAttribute("susers") Users users) {
 		ModelAndView mav = new ModelAndView();
@@ -184,7 +178,7 @@ public class IndexController {
 
 		UserServices userServ = new UserServices();
 		Users users = new Users();
-		boolean addUsers;
+		boolean addUsers;          //<-- why do you have this... 
 		users.setId(100);
 		users.setFirstName(firstName);
 		users.setLastName(lastName);
@@ -198,7 +192,7 @@ public class IndexController {
 		mav.addObject("pswd2", pswd2);
 
 		if (pswd.equals(pswd2)) {
-			System.out.println("Its A Match");
+			System.out.println("Valid");
 			users.setPassword(pswd);
 			mav.addObject("susers", users);	
 			
@@ -215,11 +209,16 @@ public class IndexController {
 //		boolean addUsers = userServ.addUser(users) != null ;
 		return mav;
 	}
+	
+	
+	
 // this part grabs the list of users from the servers
+// go to the jsp and take a look at the links and take notes on them 
+// plan out what you are going to do with the links 
+// review the notes and make it clear on what you are gonna do 
+
 	@RequestMapping("/addfriend")
-	public ModelAndView addafriendUser(
-//			@RequestAttribute("susers") Users users
-			) {
+	public ModelAndView addafriendUser() {
 		UserServices userServices = new UserServices();
 		List<Users> usersList = userServices.getAllUsers();
 		
@@ -233,7 +232,7 @@ public class IndexController {
 
 	/*--This is the study zone page---*/
 	@RequestMapping("/study")
-	public ModelAndView studyzoneUser(@RequestAttribute("susers") Users users) {
+	public ModelAndView studyzoneUser(@SessionAttribute("susers") Users users) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("studyzone");
 		return mav;
@@ -350,7 +349,7 @@ public class IndexController {
 		mav.addObject("pswd2", pswd2);
 		mav.addObject("susers", users);		
 		userServ.updateUser(users);	
-		mav.setViewName("index");		
+		mav.setViewName("profile");		
 		return mav;
 	}
 	
